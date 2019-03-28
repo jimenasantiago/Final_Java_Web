@@ -22,15 +22,15 @@
 			<div class="what-we-do">
 				<% if (loggedUser == null) {%>
 					<p>If you are a cashier, please Login</p>
-					<a class="what-we-do-link" href="/login">Login</a>
+					<a class="what-we-do-link" href="login">Login</a>
 				<% } else { %>
 					<p>Welcome <%=loggedUser.getName() %></p>
-					<a class="what-we-do-link" href="/menu">Menu</a>
+					<a class="what-we-do-link" href="menu">Menu</a>
 				<%} %>
 			</div>
 			<div class="what-we-do">
 				<p>Here you can see our list of medicines</p>
-				<a class="what-we-do-link" href="/seemedicines">See medicines</a>
+				<a class="what-we-do-link" href="seemedicines">See medicines</a>
 			</div>
 		</div>
 	</div>

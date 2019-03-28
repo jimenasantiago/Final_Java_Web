@@ -53,7 +53,7 @@ public class Sellmedicine1 extends HttpServlet {
 				System.out.println("Patient can't buy medicine! Sorry");
 			}
 			
-			request.getRequestDispatcher("/WEB-INF/sellmedicine2.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine2.jsp").forward(request, response);
 		}
 	}
 }
