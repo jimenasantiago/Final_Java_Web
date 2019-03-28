@@ -16,7 +16,7 @@
 		<div class="presentation">
 			<h1>Welcome to UTN Pharmacy</h1>
 			
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet luctus venenatis lectus magna. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Et malesuada fames ac turpis egestas sed tempus.</p>
+			<p>Select one option: </p>
 		</div>
 		<div class="what-we-do-container">
 			<div class="what-we-do">
