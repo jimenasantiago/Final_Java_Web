@@ -1,0 +1,29 @@
+.content {
+	/* text properties */
+	text-align: center;
+}
+
+.medicines-list-wrapper {
+	/* box properties */
+	width: 60vw;
+	margin: 10vh auto 0;
+	padding: 4vh 4vw;
+	/* box borders */
+	border-radius: 8px;
+	/* background properties */
+	background-color: #009688;
+	/* text properties */
+	color: #FFF;
+}
+
+@media only screen and (max-width: 767px) {
+	.medicines-list-wrapper {
+		/* box properties */
+		width: 90%;
+	}
+}
+
+ul {
+	/* text properties */
+	text-align: left;
+}

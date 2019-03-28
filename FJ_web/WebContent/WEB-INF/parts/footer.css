@@ -1,0 +1,29 @@
+.footer-container {
+	/* box properties */
+	height: 10vh;
+	width: 100vw;
+	/* background properties */
+	background-color: #00756A;
+}
+
+.footer {
+	/* box properties */
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	/* text properties */
+	color: #FFF;
+}
+
+@media only screen and (min-width: 768px) {
+	.footer {
+		width: 60%;
+		margin: 0 auto;
+	}
+}
+
+.company-name {
+	margin-right: 2vw;
+}

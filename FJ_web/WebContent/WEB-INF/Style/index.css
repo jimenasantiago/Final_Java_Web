@@ -1,0 +1,72 @@
+.presentation {
+	/* box properties */
+	width: 100%;
+	min-height: 40vh;
+	padding-top: 2vh;
+	/* background properties */
+	background: url(../images/pharmacy-background.jpg) no-repeat;
+	/* text properties */
+	text-align: center;
+}
+
+.presentation > p {
+	/* box properties */
+	width: 40%;
+	margin: 0 auto;
+}
+
+@media only screen and (max-width: 767px) {
+	.presentation > p {
+		/* box properties */
+		width: 90%;
+	}
+}
+
+.what-we-do-container {
+	/* box properties */
+	display: flex;
+	justify-content: space-around;
+	width: 60vw;
+	margin: 4vh auto;
+}
+
+@media only screen and (max-width: 767px) {
+	.what-we-do-container {
+		/* box properties */
+		flex-wrap: wrap;
+		width: 100vw;
+	}
+}
+
+.what-we-do {
+	/* box properties */
+	width: 20vw;
+	/* box borders */
+	border: 3px solid black;
+	border-radius: 4px;
+	/* text properties */
+	text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+	.what-we-do {
+		/* box properties */
+		width: 80vw;
+		margin: 4vh auto;
+	}
+}
+
+.what-we-do-link {
+	/* box properties */
+	display: inline-block;
+	margin-top: 3vh;
+	margin-bottom: 3vh;
+	padding: 3vh 3vw;
+	/* box borders */
+	border-radius: 3px;
+	/* background properties */
+	background-color: #009688;
+	/* text properties */
+	color: #FFF;
+	text-decoration: none;
+}

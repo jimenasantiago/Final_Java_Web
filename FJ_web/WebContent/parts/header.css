@@ -1,0 +1,66 @@
+.header-container {
+	/* box properties */
+	position: fixed;
+	top: 0;
+	height: 10vh;
+	width: 100vw;
+	/* background properties */
+	background-color: #D3D3D3;
+}
+
+.header {
+	/* box properties */
+	height: 100%;
+	width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+	.header {
+		width: 60%;
+		margin: 0 auto;
+	}
+}
+
+.header-link {
+	/* box properties */
+	display: inline-flex;
+	align-items: center;
+	height: 100%;
+	margin-left: 2vw;
+	/* text properties */
+	text-decoration: none;
+}
+
+.logo {
+	/* box properties */
+	display: inline-block;
+	height: 60%;
+	margin-right: 10px;
+}
+
+.header-title {
+	/* box properties */
+	display: inline-block;
+	/* text properties */
+	color: #000;
+}
+
+.header-logout-container {
+	/* box properties */
+	display: flex;
+	align-items: center;
+	height: 100%;
+	float: right;
+}
+
+.header-logout-link {
+	/* box properties */
+	padding: 1vh 1vw;
+	/* box borders */
+	border: 2px solid #000;
+	border-radius: 5px;
+	/* text properties */
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
