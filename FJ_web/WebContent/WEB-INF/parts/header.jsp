@@ -10,7 +10,7 @@
 		</a>
 		<% if (session.getAttribute("userSession") != null) { %>
 			<div class="header-logout-container">
-				<a href="/logout" class="header-logout-link">Logout</a>
+				<a href="logout" class="header-logout-link">Logout</a>
 			</div>
 		<% } %>
 	</div>

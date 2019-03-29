@@ -25,7 +25,9 @@ public class Logout extends HttpServlet {
 		if (loggedUser != null) {
 			session.invalidate();
 		}
-		response.sendRedirect("/");
+		request.getRequestDispatcher("/WEB-INF/lib/index.jsp").forward(request, response);
+		//response.sendRedirect("/index");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 		String nextPage;
 		
 		try {
-			Integer userDni = Integer.parseInt(userInput);
+Integer userDni = Integer.parseInt(userInput);
 			
 			if (controller.validateUser(userDni, passwordInput)) {
 				HttpSession session = request.getSession(true);
@@ -47,8 +47,9 @@ public class Login extends HttpServlet {
 			} else {
 				nextPage = "login";
 				request.setAttribute("errorMessage", "User DNI or password incorrect");
+		
 			}
-		} catch (NumberFormatException e) {
+			} catch (NumberFormatException e) {
 			nextPage = "login";
 			request.setAttribute("errorMessage", "Please enter only numbers in user (DNI)");
 		}

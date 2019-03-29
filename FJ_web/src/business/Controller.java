@@ -52,6 +52,7 @@ public boolean validateUser (int dni, String pass){
 	UsersCatalog user= new UsersCatalog();
 	us=user.getUser(dni, pass);
 	System.out.println("User: " + us.getDni() + "Pass: " + us.getPassword()) ;
+	System.out.println("User type: " + us.getType() ) ;
 	if ( us.getDni()==dni){
 		System.out.println("Se encontr� el usuario!");
 		return true;

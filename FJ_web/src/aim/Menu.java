@@ -24,9 +24,13 @@ public class Menu extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
-		if (loggedUser != null) {
+		if (loggedUser != null ) {
 			request.getRequestDispatcher("/WEB-INF/lib/menu.jsp").forward(request, response);
-		} else {
+		}
+		
+
+		
+		else {
 			request.getRequestDispatcher("/WEB-INF/lib/login.jsp").forward(request, response);
 		}
 	}
