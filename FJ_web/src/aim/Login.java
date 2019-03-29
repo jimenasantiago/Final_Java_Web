@@ -23,9 +23,13 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
-		if (loggedUser != null) {
+		if (loggedUser != null && loggedUser.getType()=="Admin") {
 			request.getRequestDispatcher("/WEB-INF/lib/menu.jsp").forward(request, response);
-		} else {
+		} 
+		else if (loggedUser != null && loggedUser.getType()=="User") {
+			request.getRequestDispatcher("/WEB-INF/lib/menu2.jsp").forward(request, response);
+		}
+		else {
 			request.getRequestDispatcher("/WEB-INF/lib/login.jsp").forward(request, response);
 		}
 	}
@@ -40,11 +44,25 @@ public class Login extends HttpServlet {
 		try {
 Integer userDni = Integer.parseInt(userInput);
 			
-			if (controller.validateUser(userDni, passwordInput)) {
+			if (controller.validateUser(userDni, passwordInput) ) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("userSession", controller.getUser(userDni, passwordInput));
-				nextPage = "menu";
-			} else {
+				
+				String type = controller.getUser(userDni, passwordInput).getType();
+				
+				switch(type) {
+				  case "Admin":
+					  nextPage = "menu";
+				    break;
+				  case "User":
+					  nextPage = "menu2";
+				    break;
+				  default:				
+				nextPage = "login";
+			}
+			}
+			
+			else {
 				nextPage = "login";
 				request.setAttribute("errorMessage", "User DNI or password incorrect");
 		
