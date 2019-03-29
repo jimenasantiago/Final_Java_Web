@@ -39,21 +39,36 @@ public class Sellmedicine1 extends HttpServlet {
 			int healthPlanId = Integer.parseInt(request.getParameter("healthPlanId")); 
 			HealthPlan hplan = new HealthPlan();
 			hplan = ctrl.getHealthPlan(healthPlanId);
+			String nextPage;
 
 			Patient patient = new Patient();
 			patient = ctrl.getPatient(Integer.parseInt(request.getParameter("affiliateNumberHP")));
-
+			try {
 			boolean answer = ctrl.validatecantmaxPrescription(healthPlanId, patient.getidPatient());
-			if (answer) {
+			if (answer && (patient.getname() != null)) {
 				System.out.println("Patient can buy medicine!");
-				//saves the Patient in Session
+				nextPage = "sellmedicine2";
 				session.setAttribute("patient", patient);
 				System.out.println("Patient name:" + patient.getname() + "Health Plan name" + hplan.getnameHP());
 			} else {
 				System.out.println("Patient can't buy medicine! Sorry");
+				nextPage = "sellmedicine1";
+				request.setAttribute("errorMessage", "Patient incorrect");
+			} 
+			} catch (NumberFormatException e) {
+				nextPage = "sellmedicine1";
+				request.setAttribute("errorMessage", "Patient incorrect");
 			}
+			request.getRequestDispatcher("/WEB-INF/lib/" + nextPage + ".jsp").forward(request, response);
 			
-			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine2.jsp").forward(request, response);
 		}
 	}
 }
+
+
+
+
+
+
+
+

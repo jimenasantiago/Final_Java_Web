@@ -1,5 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%
+	String errorMessage = request.getAttribute("errorMessage") == null ? "" : (String) request.getAttribute("errorMessage");
+%>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -20,6 +23,7 @@
 				<input name="affiliateNumberHP" required>
 			</label>
 			<button type="submit" class="form-submit">Search</button>
+			<span class="errorMessage"><%=errorMessage %></span>
 		</form>
 	</div>
 	<%@include file="../parts/footer.html" %>
