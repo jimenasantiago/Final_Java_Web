@@ -26,7 +26,7 @@ public class Sellmedicine6 extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
 		if (loggedUser != null) {
-			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine6.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/lib/menu.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/lib/login.jsp").forward(request, response);
 		}
@@ -36,7 +36,9 @@ public class Sellmedicine6 extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
 		if (loggedUser != null) {
-			Controller ctrl = new Controller();
+			CtrlItem ctrlItem = new CtrlItem();
+			CtrlPrescription ctrlPrescription = new CtrlPrescription();
+			CtrlPres_Item ctrlPres_Item = new CtrlPres_Item();
 			Patient patient = (Patient) session.getAttribute("patient");
 			Professional prof = (Professional) session.getAttribute("professional");
 			Item item = (Item) session.getAttribute("itemsel");
@@ -51,13 +53,13 @@ public class Sellmedicine6 extends HttpServlet {
 			Date prescdate = date.getTime();
 			p.setprescriptionDate(prescdate);
 			p.setTotal(total);
-			int idPrescription = ctrl.setPrescription(p);
+			int idPrescription = ctrlPrescription.setPrescription(p);
 			Prescription_Item pi = new Prescription_Item();
 			pi.setCantItem(cantItems);
 			pi.setIdItem(item.getidItem());
 			pi.setidPrescription(idPrescription);
-			ctrl.setPrescription_Item(pi);
-			ctrl.updateCantItem(item, cantItems);
+			ctrlPres_Item.setPrescription_Item(pi);
+			ctrlItem.updateCantItem(item, cantItems);
 			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine7.jsp").forward(request, response);
 		}
 	}

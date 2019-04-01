@@ -18,7 +18,7 @@ public class PatientCatalog {
     public Patient getPatient(int affiliate){
     	//gets a patient by affiliate number
     	Patient p = new Patient();
-		String sql="SELECT idpatient, name, affiliateNumberHP, surname, birthdate FROM patient where affiliateNumberHP = ?";
+		String sql="SELECT idpatient, name, affiliateNumberHP, surname, birthdate, idhealthplan FROM patient where affiliateNumberHP = ?";
 		PreparedStatement sentencia=null;
 		ResultSet rs=null;
 		Connection con = FactoryConnection.getInstancia().getConn();
@@ -33,7 +33,7 @@ public class PatientCatalog {
 				p.setaffiliateNumberHP(rs.getInt(3));
 				p.setsurname(rs.getString(4));
 				p.setbirthdate(rs.getInt(5));
-			
+			    p.setHealthPlanId(rs.getInt(6));
 			}
 			
 				

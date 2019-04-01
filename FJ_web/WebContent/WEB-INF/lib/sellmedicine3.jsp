@@ -2,6 +2,9 @@
 <%@page import="entities.Medicine" %>
 <%@page import="java.util.ArrayList" %>
 <%
+	String errorMessage = request.getAttribute("errorMessage") == null ? "" : (String) request.getAttribute("errorMessage");
+%>
+<%
 	ArrayList<Medicine> lista = new ArrayList<Medicine>();
 	lista = (ArrayList<Medicine>) request.getAttribute("medicines");
 %>
@@ -28,6 +31,7 @@
 				</select>
 			</label>
 			<button type='submit' class="form-submit">Search Presentation</button>
+			<span class="errorMessage"><%=errorMessage %></span>
 		</form>
 	</div>
 	<%@include file="../parts/footer.html" %>

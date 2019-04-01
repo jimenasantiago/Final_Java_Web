@@ -15,6 +15,7 @@
 				<a href="sellmedicine1">Sell medicine</a>
 				<a href="addmedicine">New medicine</a>
 				<a href="addpatient">New patient</a>
+				<a href="updatepricemedicine1">Update Price</a>
 			</div>
 		</div>
 	</div>

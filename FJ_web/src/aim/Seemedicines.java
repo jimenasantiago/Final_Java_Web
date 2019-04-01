@@ -21,7 +21,7 @@ public class Seemedicines extends HttpServlet {
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Controller controller = new Controller();
+		CtrlMedicine controller = new CtrlMedicine();
 		ArrayList<Medicine> medicines = new ArrayList<Medicine>();
 		medicines = controller.getMedicines();
 		request.setAttribute("medicines", medicines);

@@ -35,7 +35,7 @@ public class Login extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Controller controller = new Controller();
+		CtrlUser ctrlUser = new CtrlUser();
 
 		String userInput = request.getParameter("user");
 		String passwordInput = request.getParameter("password");
@@ -44,11 +44,11 @@ public class Login extends HttpServlet {
 		try {
 Integer userDni = Integer.parseInt(userInput);
 			
-			if (controller.validateUser(userDni, passwordInput) ) {
+			if (ctrlUser.validateUser(userDni, passwordInput) ) {
 				HttpSession session = request.getSession(true);
-				session.setAttribute("userSession", controller.getUser(userDni, passwordInput));
+				session.setAttribute("userSession", ctrlUser.getUser(userDni, passwordInput));
 				
-				String type = controller.getUser(userDni, passwordInput).getType();
+				String type = ctrlUser.getUser(userDni, passwordInput).getType();
 				
 				switch(type) {
 				  case "Admin":

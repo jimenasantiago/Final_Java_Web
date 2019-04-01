@@ -220,4 +220,10 @@ public class MedicineCatalog {
         return medicines;
     }
 
+	public void updateMedicine(double percent) {
+		
+
+		
+	}
+
 }

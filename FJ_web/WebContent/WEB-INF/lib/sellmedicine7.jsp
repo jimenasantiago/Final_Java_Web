@@ -1,4 +1,10 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+	
+	HttpSession mysession = (HttpSession) request.getSession();
+	
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>

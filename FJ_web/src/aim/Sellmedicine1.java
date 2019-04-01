@@ -34,18 +34,24 @@ public class Sellmedicine1 extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
 		if (loggedUser != null) {
-			Controller ctrl = new Controller();
-
+			CtrlPatient ctrlPatient = new CtrlPatient();
+			CtrlHPlan ctrlHPlan = new CtrlHPlan();
+			CtrlPrescription ctrlPrescription = new CtrlPrescription();
 			int healthPlanId = Integer.parseInt(request.getParameter("healthPlanId")); 
 			HealthPlan hplan = new HealthPlan();
-			hplan = ctrl.getHealthPlan(healthPlanId);
+			hplan = ctrlHPlan.getHealthPlan(healthPlanId);
 			String nextPage;
 
 			Patient patient = new Patient();
-			patient = ctrl.getPatient(Integer.parseInt(request.getParameter("affiliateNumberHP")));
+			patient = ctrlPatient.getPatient(Integer.parseInt(request.getParameter("affiliateNumberHP")));
+			System.out.println("Patient id HP:" + patient.getHealthPlanId());
+			
 			try {
-			boolean answer = ctrl.validatecantmaxPrescription(healthPlanId, patient.getidPatient());
-			if (answer && (patient.getname() != null)) {
+			boolean answer = ctrlPrescription.validatecantmaxPrescription(patient.getHealthPlanId(), patient.getidPatient());
+		    
+		    
+			
+			if (answer && (patient.getname() != null) ) {
 				System.out.println("Patient can buy medicine!");
 				nextPage = "sellmedicine2";
 				session.setAttribute("patient", patient);
@@ -55,9 +61,11 @@ public class Sellmedicine1 extends HttpServlet {
 				nextPage = "sellmedicine1";
 				request.setAttribute("errorMessage", "Patient incorrect");
 			} 
+						
+			
 			} catch (NumberFormatException e) {
 				nextPage = "sellmedicine1";
-				request.setAttribute("errorMessage", "Patient incorrect");
+				request.setAttribute("errorMessage", "Please insert correct data");
 			}
 			request.getRequestDispatcher("/WEB-INF/lib/" + nextPage + ".jsp").forward(request, response);
 			

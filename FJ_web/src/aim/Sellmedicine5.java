@@ -33,14 +33,24 @@ public class Sellmedicine5 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
-		if (loggedUser != null) {
-			Controller ctrl = new Controller();
+		Professional prof = session != null ? (Professional) session.getAttribute("professional") : null;
+		if (loggedUser != null && prof.getname() !=null) {
+			CtrlItem ctrlItem = new CtrlItem();
 			int cantItems = Integer.parseInt(request.getParameter("cantItem"));
     		Item item = (Item) session.getAttribute("itemsel");
-    		double calcPrice = (double) ctrl.calcPriceItem(item, cantItems);
+    	         
+    		if(ctrlItem.validatecantitems(cantItems, item.getcantStock()) && item.getcantStock()>=0)
+    		{  
+    		
+    
+    		double calcPrice = (double) ctrlItem.calcPriceItem(item, cantItems);
     		session.setAttribute("cantItems",cantItems);
     		request.setAttribute("calcPrice", calcPrice);
     		request.getRequestDispatcher("/WEB-INF/lib/sellmedicine6.jsp").forward(request, response);
-		}
+    		}else  {
+    			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine5.jsp").forward(request, response);
+    			request.setAttribute("errorMessage", "Insuficient Items quantity");
+    			
+    		}}
 	}
 }

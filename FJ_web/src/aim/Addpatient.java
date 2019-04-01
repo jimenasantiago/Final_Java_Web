@@ -29,8 +29,9 @@ public class Addpatient extends HttpServlet {
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
 		if (loggedUser != null) {
 			Controller controller = new Controller();
+			CtrlHPlan ctrlHPlan = new CtrlHPlan();
 			ArrayList<HealthPlan> healthPlans = new ArrayList<HealthPlan>();
-			healthPlans = controller.getAllHealthPlan();
+			healthPlans = ctrlHPlan.getAllHealthPlan();
 			request.setAttribute("hplans", healthPlans);
 			request.getRequestDispatcher("/WEB-INF/lib/addpatient.jsp").forward(request, response);
 		} else {
@@ -42,7 +43,7 @@ public class Addpatient extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
 		if (loggedUser != null) {
-			Controller ctrl = new Controller();
+			CtrlPatient ctrl = new CtrlPatient();
 			
 			Patient patient = new Patient();
 			patient.setname(request.getParameter("name"));

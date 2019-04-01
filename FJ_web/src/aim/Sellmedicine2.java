@@ -34,11 +34,15 @@ public class Sellmedicine2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
+		
+		try{ 
+		
 		if (loggedUser != null) {
-			Controller ctrl = new Controller();
+			CtrlMedicine ctrl = new CtrlMedicine();
+			CtrlGDrug ctrlgdrug = new CtrlGDrug();
 			
 			GenericDrug gdrug = new GenericDrug();
-			gdrug = ctrl.getGenericDrug(request.getParameter("gDrugName"));
+			gdrug = ctrlgdrug.getGenericDrug(request.getParameter("gDrugName"));
 			
 			ArrayList<Medicine> medicines = new ArrayList<Medicine>();
 			medicines = ctrl.getMedicineByDrug(gdrug.getidDrug());
@@ -46,5 +50,10 @@ public class Sellmedicine2 extends HttpServlet {
 			request.setAttribute("medicines", medicines);
 			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine3.jsp").forward(request, response);
 		}
+		
+		} catch (NumberFormatException e) {
+			
+			request.setAttribute("errorMessage", "Please enter only numbers in user (DNI)");
+			request.getRequestDispatcher("/WEB-INF/lib/login.jsp").forward(request, response);
 	}
-}
+}}

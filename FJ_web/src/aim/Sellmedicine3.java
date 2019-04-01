@@ -34,18 +34,32 @@ public class Sellmedicine3 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		User loggedUser = session != null ? (User) session.getAttribute("userSession") : null;
+		String nextPage = "login";
+
 		if (loggedUser != null) {
-			Controller ctrl = new Controller();
+			
+			try {
+				
+			CtrlMedicine ctrl = new CtrlMedicine();
+			CtrlPresentation ctrlP = new CtrlPresentation();
 			
 			Medicine medicine = new Medicine();
 			medicine = ctrl.getMedicineByName(request.getParameter("medicineName"));
 			
 			ArrayList<Presentation> pres = new ArrayList<Presentation>();
-			pres = ctrl.getPresentationByMedicine(medicine.getidMedicine());
+			pres = ctrlP.getPresentationByMedicine(medicine.getidMedicine());
 			
 			session.setAttribute("medicine", medicine);
     		request.setAttribute("pres", pres);
-    		request.getRequestDispatcher("/WEB-INF/lib/sellmedicine4.jsp").forward(request, response);
+    		nextPage = "sellmedicine4";
+    		//request.getRequestDispatcher("/WEB-INF/lib/sellmedicine4.jsp").forward(request, response);
 		}
-	}
+		
+ catch (NumberFormatException e) {
+	nextPage = "sellmedicine3";
+	request.setAttribute("errorMessage", "");
 }
+request.getRequestDispatcher("/WEB-INF/lib/" + nextPage + ".jsp").forward(request, response);
+
+}}}
+	

@@ -1,6 +1,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="entities.*" %>
 <%
+	String errorMessage = request.getAttribute("errorMessage") == null ? "" : (String) request.getAttribute("errorMessage");
+%>
+<%
 	Item item = new Item();
 	Professional prof = new Professional();
 	Medicine med = new Medicine();
@@ -28,6 +31,7 @@
 			<p>Selected items: <%=cantItems %></p>
 			<p>Calculated price: <%=cantPrice %></p>
 			<button type="submit" class="form-submit">Register</button>
+			<span class="errorMessage"><%=errorMessage %></span>
 		</form>
 	</div>
 	<%@include file="../parts/footer.html" %>
