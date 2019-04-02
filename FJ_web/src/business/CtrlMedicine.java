@@ -33,6 +33,12 @@ public class CtrlMedicine {
 		return medicine;
 	}
 	
+	public Medicine getMedicineById(int idMedicine){
+		Medicine medicine = new Medicine();
+		MedicineCatalog mcatalog = new MedicineCatalog();
+		medicine=mcatalog.getMedicinebyId(idMedicine);
+		return medicine;
+	}
 	public ArrayList<Medicine> getMedicines (){
 		ArrayList<Medicine> medicines = new ArrayList<Medicine>();
 		MedicineCatalog medicineCatalog = new MedicineCatalog();

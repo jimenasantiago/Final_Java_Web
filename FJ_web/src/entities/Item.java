@@ -5,6 +5,7 @@ public class Item {
 	int idItem, idmedicine, idpresentation;
 	int cantStock;
 	float price;
+	String desc;
 	
 	//set
 	public void setidItem (int id) {
@@ -49,6 +50,13 @@ public class Item {
 		this.idpresentation = idepresentation;
 	}
 
+	public String getdesc() {
+		// TODO Auto-generated method stub
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	
 
 	

@@ -225,5 +225,46 @@ public class MedicineCatalog {
 
 		
 	}
+	public Medicine getMedicinebyId (int idmedicine) {
+        //TODO: select from medicine where idmedicine = idmedicine
+        Medicine medicine = new Medicine();
+        
 
+        ResultSet rs=null;
+		PreparedStatement stmt=null;
+		
+			try {
+			stmt = 	FactoryConnection.getInstancia().getConn().prepareStatement(
+					"select description, name, iddrug, idmedicine from medicine where idmedicine = ?"
+					);
+			stmt.setInt(1, idmedicine);
+			rs = stmt.executeQuery();
+			if(rs !=null && rs.next()){
+		    	medicine.setdescription(rs.getString("description"));
+				medicine.setname(rs.getString("name"));
+				medicine.setidMedicine(rs.getInt("idmedicine"));
+				
+				GenericDrug genericDrug =new GenericDrug();
+				genericDrug.setidDrug((rs.getInt("iddrug")));
+				medicine.setgenericDrugs(genericDrug);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null) stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			FactoryConnection.getInstancia().releaseConn();
+		}
+        
+        return medicine;
+    } 
 }

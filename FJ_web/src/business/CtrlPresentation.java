@@ -15,5 +15,12 @@ public class CtrlPresentation {
 		
 		return presentations;
 	}
+
+	public Presentation getPresentationById(int idpresentation) {
+		Presentation pres = new Presentation();
+		PresentationCatalog pcatalog = new PresentationCatalog();
+		pres=pcatalog.getPresentationById(idpresentation);
+		return pres;
+	}
 	
 }

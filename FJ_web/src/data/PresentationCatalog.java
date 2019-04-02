@@ -67,6 +67,56 @@ public class PresentationCatalog {
 			
 			
 		}
+
+		public Presentation getPresentationById(int idpresentation) {
+			 Presentation presentation = new Presentation();
+
+		        String sql="SELECT presentation.idpresentation, presentation.description FROM presentation where presentation.idpresentation = ?";
+				PreparedStatement sentencia=null;
+				ResultSet rs=null;
+
+				Connection con = FactoryConnection.getInstancia().getConn();
+				try 
+				{			
+					sentencia= con.prepareStatement(sql);
+					sentencia.setInt(1, idpresentation );
+					rs= sentencia.executeQuery();
+					
+					while (rs !=null && rs.next()){
+						
+						presentation.setIdPresentation(rs.getInt("presentation.idpresentation"));
+						presentation.setDescription(rs.getString("presentation.description"));
+						//System.out.println(presentation.getDescription());
+						
+					}
+					
+						
+				}
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+				finally
+				{
+					try
+					{
+						if(rs!=null)
+						{
+							rs.close();
+						}
+						if(sentencia!=null && !sentencia.isClosed())
+						{
+							sentencia.close();
+						}
+						FactoryConnection.getInstancia().releaseConn();
+					}
+					catch (SQLException sqle)
+					{
+						sqle.printStackTrace();
+					}
+				}
+			return presentation;
+		}
 	
 
 }

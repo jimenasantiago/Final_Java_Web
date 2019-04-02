@@ -36,13 +36,16 @@ public class UpdatePriceMedicine1 extends HttpServlet {
 		if (loggedUser != null) {
 			
 			
-			String nextPage = "menu";
+			String nextPage;
 			try {
 			CtrlMedicine ctrlMedicine = new CtrlMedicine();
 			double percent = Double.parseDouble(request.getParameter("percentMedicine"));
-			
+			if (percent<1 && (percent>0)){
 			ctrlMedicine.updatePriceMedicines(percent);
-						
+			nextPage = "menu";	
+			request.setAttribute("errorMessage", "Price updated");
+			} else {nextPage = "updatepricemedicine1";
+			request.setAttribute("errorMessage", "Please insert correct data");}
 			
 			} catch (NumberFormatException e) {
 				nextPage = "updatepricemedicine1";
