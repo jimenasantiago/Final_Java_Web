@@ -1,6 +1,7 @@
 package aim;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -53,14 +54,25 @@ public class Sellmedicine6 extends HttpServlet {
 			Date prescdate = date.getTime();
 			p.setprescriptionDate(prescdate);
 			p.setTotal(total);
-			int idPrescription = ctrlPrescription.setPrescription(p);
-			Prescription_Item pi = new Prescription_Item();
-			pi.setCantItem(cantItems);
-			pi.setIdItem(item.getidItem());
-			pi.setidPrescription(idPrescription);
-			ctrlPres_Item.setPrescription_Item(pi);
-			ctrlItem.updateCantItem(item, cantItems);
-			request.getRequestDispatcher("/WEB-INF/lib/sellmedicine7.jsp").forward(request, response);
+			int idPrescription;
+			try {
+				idPrescription = ctrlPrescription.setPrescription(p);
+				Prescription_Item pi = new Prescription_Item();
+				pi.setCantItem(cantItems);
+				pi.setIdItem(item.getidItem());
+				pi.setidPrescription(idPrescription);
+				ctrlPres_Item.setPrescription_Item(pi);
+				ctrlItem.updateCantItem(item, cantItems);
+				request.getRequestDispatcher("/WEB-INF/lib/sellmedicine7.jsp").forward(request, response);
+			
+			
+			} catch (SQLException e) {
+				request.getRequestDispatcher("/WEB-INF/lib/sellmedicine6.jsp").forward(request, response);
+				request.setAttribute("errorMessage", "Insuficient Items quantity");
+				e.printStackTrace();
+				
+			}
+			
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package data;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +14,9 @@ public class ItemCatalog {
 	public ItemCatalog() {
 		// TODO Auto-generated constructor stub
 	}
-	public void addItem (Item item) {
-
+	public void addItem (Item item) throws SQLException {
+		
+		
         //TODO: Insert the new item in the DB
 
        ResultSet rs=null;
@@ -23,12 +25,12 @@ public class ItemCatalog {
 
               try {
                       stmt = FactoryConnection.getInstancia().getConn().prepareStatement(
-                    		  "insert into item (idmedicine,idpresentation, cantStock, price, desc) values (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+                    		  "insert into item (idmedicine,idpresentation, cantStock, price) values (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
                       stmt.setInt(1, item.getIdmedicine());
                       stmt.setInt(2, item.getIdpresentation());
                       stmt.setInt(3, item.getcantStock());
                       stmt.setFloat(4, item.getprice());
-                      stmt.setString(5, item.getdesc());
+                      
                       stmt.execute();
 
                       rs=stmt.getGeneratedKeys();
@@ -48,12 +50,17 @@ public class ItemCatalog {
                               if(stmt != null) stmt.close();
                               
                       } catch (SQLException e) {
-                              // TODO Auto-generated catch block
-                              e.printStackTrace();
+                    	 
+                    	  e.printStackTrace();
+                    	  throw e;
+                             
+                              
 
                       }
 
                       FactoryConnection.getInstancia().releaseConn();}}
+		
+		
               
 
        

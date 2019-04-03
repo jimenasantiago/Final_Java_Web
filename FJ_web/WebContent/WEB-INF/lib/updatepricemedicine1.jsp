@@ -15,7 +15,7 @@
 			<h1>Please enter Percentage Drug Price Increase:</h1>
 			<h2>Ex. 15%, enter 0.15</h2>
 			<label>
-				Health Plan ID:
+				Percentage:
 				<input name="percentMedicine" required autofocus>
 			</label>
 			

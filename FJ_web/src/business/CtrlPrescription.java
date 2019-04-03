@@ -1,5 +1,6 @@
 package business;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 import data.HealthPlanCatalog;
@@ -22,10 +23,17 @@ public class CtrlPrescription {
 		
 	}
 	
-	public int setPrescription(Prescription p){
+	public int setPrescription(Prescription p) throws SQLException{
 		
 		PrescriptionCatalog pcatalog = new PrescriptionCatalog();
-		int idPrescription = pcatalog.addPrescription(p);
+		int idPrescription;
+		try {
+			idPrescription = pcatalog.addPrescription(p);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw e;
+		}
 		return idPrescription;
 	}
 	public boolean validatecantmaxPrescription(int idHealthPlan, int idPatient){

@@ -10,10 +10,13 @@ public class FactoryConnection {
 
 
 	private String dbDriver="com.mysql.jdbc.Driver";
-	private String host="localhost";
+
+	//private String host="localhost";
+	private String host="node30541-java19.jelastic.saveincloud.net";
 	private String port="3306";
 	private String user="root";
-	private String pass="root";
+	//private String pass="root";
+	private String pass="BANdae53977";
 	private String db="pharmacy";
 	
 	private Connection conn;

@@ -51,7 +51,7 @@ public class PrescriptionCatalog {
 				
 		}
 		catch (SQLException e) 
-		{
+		{    
 			e.printStackTrace();
 		}
 		finally
@@ -127,7 +127,7 @@ public class PrescriptionCatalog {
 		return prescriptions;
 	}
 
-	public int addPrescription (Prescription prescription) {
+	public int addPrescription (Prescription prescription) throws SQLException {
         //TODO: Insert the new prescription in the DB
 
        ResultSet rs=null;
@@ -168,6 +168,7 @@ public class PrescriptionCatalog {
                       } catch (SQLException e) {
                               // TODO Auto-generated catch block
                               e.printStackTrace();
+                              throw e;
 
                       }
 
